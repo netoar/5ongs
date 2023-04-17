@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<head>
+    <h1> {% block title %}Edit song{% endblock %}</h1>
+    <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
+</head>
+
+{% block content %}
+<br>
+<a href="/"><button class="btn btn-primary btn-lg" onclick="location.hreg='/'">Home</button></a>
+<form id="edit-form" class="edit" method="post" action="/song/{{ song.id }}/edit">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="{{ song.title }}" {% if "post:songs" not in permissions %}readonly
+        class="readonly-field" {% endif %} />
+    <br>
+    <label for="artist_name">Artist name:</label>
+    <input type="text" id="artist_name" name="artist_name" value="{{ song.artist_name }}" {% if "post:songs" not in
+        permissions %}readonly class="readonly-field" {% endif %} />
+
+    <br>
+    <label for="date_release">Date release:</label>
+    <input type="date" id="date_release" name="date_release" value="{{ song.date_release }}" {% if "post:songs" not in
+        permissions %}readonly class="readonly-field" {% endif %} />
+    <br>
+    <label for="date_send">Date send:</label>
+    <input type="date" id="date_send" name="date_send" value="{{ song.date_send }}" {% if "post:songs" not in
+        permissions %}readonly class="readonly-field" {% endif %} />
+    <br>
+    <label for="rate">New rate:</label>
+    <input type="number" id="rate" name="rate" value="{{ song.rate_average }}" min="0" max="5" />
+    <br>
+    <button class="update-button">Save</button>
+</form>
+<button onclick="location.href='/'">Cancel</button>
+{% endblock %}

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<h1>{% block title %} List of songs{% endblock %}</h1>
+<a href="/"><button class="btn btn-primary btn-lg" onclick="location.hreg='/'">Home</button></a>
+{% block content %}
+<ul class="items">
+    {% for song in songs %}
+    <li><a href="/song/{{ song.id }}">{{ song.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

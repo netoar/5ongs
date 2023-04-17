@@ -1,0 +1,37 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}5ongs{% endblock %}</title>
+    <!-- styles -->
+    <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
+    <!-- /styles -->
+</head>
+
+<body>
+    {% block content %}
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Songs 🔥</h1>
+            <p class="lead">Your weekly discover!</p>
+            <h3>
+                <a href="/song"><button class="btn btn-primary btn-lg">Find a song</button></a>
+                <a href="/song/create"><button class="btn btn-default btn-lg">Add a song</button></a>
+            </h3>
+            {% if user.name is defined %}
+            <p>Hello, {{ user.name }}!</p>
+            <a href="/logout">Logout</a>
+            {% else %}
+            <p>Please log in to continue.</p>
+            <h3>
+                <a href="{{ login }}">Login</a>
+            </h3>
+            {% endif %}
+            <p class="lead">Discover, add and rate songs!</p>
+        </div>
+        <div class="col-sm-6 hidden-sm hidden-xs">
+            <img id="front-splash" src="{{ url_for('static',filename='img/logo-10.jpg') }}" alt="5ONGS LOGO" />
+        </div>
+    </div>
+    {% endblock %}
+</body>

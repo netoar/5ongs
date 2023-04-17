@@ -1,0 +1,23 @@
+version: '3'
+services:
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    environment:
+      - DATABASE_PATH=postgresql://postgres:postgres@db:5432/songs
+      - FLASK_ENV=production
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=songs
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:

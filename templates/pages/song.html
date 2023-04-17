@@ -1,0 +1,23 @@
+<h1>SONG</h1>
+<a href="/"><button class="btn btn-primary btn-lg" onclick="location.hreg='/'">Home</button></a>
+<form id="display-form" class="display" method="get" action="/song/{{ song.id }}/edit">
+    <p>title:{{ song.title }}</p>
+    <p>name:{{ song.artist_name }}</p>
+    <p>Date released:{{ song.date_release }}</p>
+    <p>Date send:{{ song.date_send }}</p>
+    <p>Rate:{{ song.rate_average }}</p>
+    <br>
+    <button href="/song/{{ song.id }}/edit">Edit</button>
+</form>
+<form class="delete-form" method="post" action="/song/{{ song.id }}/delete">
+    <input onclick="beforeSubmit()" value="Delete Song" class="btn btn-warning btn-lg btn-block">
+</form>
+<script>
+    //CSS edited
+    const deleteForm = document.getElementsByClassName('delete-form')[0];
+    const beforeSubmit = () => {
+        if (confirm('Remove song {{ song.title }} ?')) {
+            deleteForm.submit();
+        }
+    };
+</script>
